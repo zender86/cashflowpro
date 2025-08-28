@@ -8,6 +8,7 @@ from collections import defaultdict
 from dateutil.relativedelta import relativedelta
 import calendar
 import numpy as np
+from pathlib import Path # <-- 1. IMPORTATO PATHLIB
 
 # Importa le funzioni dal file db.py
 try:
@@ -37,6 +38,11 @@ try:
 except ImportError as e:
     st.error(f"ERRORE CRITICO: Assicurati di avere tutti i file necessari ('db.py', 'ml_utils.py', 'auth.py') e le librerie installate. Dettaglio: {e}")
     st.stop()
+
+# --- DEFINIZIONE PERCORSO CSS ---
+# 2. Definisce il percorso del CSS in modo robusto
+CSS_FILE = Path(__file__).parent / "styles" / "main.css"
+
 
 # --- FUNZIONE PER CARICARE IL CSS ---
 def load_css(file_name):
@@ -763,7 +769,7 @@ def show_main_dashboard():
                 
                 if st.form_submit_button("Salva Budget"):
                     add_budget(year, budget_month, budget_category, budget_account, budget_amount)
-                    st.toast("Voce di budget salvata!", icon="�")
+                    st.toast("Voce di budget salvata!", icon="💰")
                     st.cache_data.clear(); st.rerun()
             
             budgets_data_for_deletion = get_budgets_by_year(year)
@@ -1100,7 +1106,7 @@ def show_main_dashboard():
 # --- SCHERMATA DI LOGIN ---
 def login_screen():
     st.set_page_config(page_title="Cashflow Personale - Accesso", layout="centered")
-    load_css("styles/main.css")
+    load_css(CSS_FILE)
     
     with st.container():
         st.title("💰 Cashflow Pro")
@@ -1206,7 +1212,7 @@ if __name__ == "__main__":
     # Controlla se l'utente è autenticato e mostra la vista corretta
     if st.session_state.authenticated:
         st.set_page_config(page_title="Cashflow Pro", layout="wide", initial_sidebar_state="collapsed")
-        load_css("styles/main.css")
+        load_css(CSS_FILE)
         init_db()
         auth.create_auth_schema()
         show_main_dashboard()
