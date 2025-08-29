@@ -1212,7 +1212,7 @@ if __name__ == "__main__":
     # Controlla se l'utente è autenticato e mostra la vista corretta
     if st.session_state.authenticated:
         st.set_page_config(page_title="Cashflow Pro", layout="wide", initial_sidebar_state="collapsed")
-        load_css(CSS_FILE)
+        load_css(CSS_FILE)   # <-- CSS dopo il login
         init_db()
         auth.create_auth_schema()
         show_main_dashboard()
@@ -1221,4 +1221,5 @@ if __name__ == "__main__":
         st.set_page_config(page_title="Cashflow Pro - Accesso", layout="centered")
         init_db() # Il DB deve essere inizializzato anche per la pagina di login
         auth.create_auth_schema()
+        load_css(CSS_FILE)   # <-- CSS anche per il login
         login_screen()
