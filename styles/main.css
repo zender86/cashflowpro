@@ -4,75 +4,63 @@
 /* DEFINIZIONE COLORI E VARIABILI      */
 /* =================================== */
 :root {
-    --primary-color: #0068FF;      /* Blu vibrante per elementi principali */
-    --secondary-color: #00B8D9;    /* Ciano per accenti e gradienti */
-    --background-color: #F0F2F6;   /* Grigio molto chiaro per lo sfondo */
-    --container-bg-color: #FFFFFF; /* Bianco per i contenitori */
-    --text-color: #1E293B;         /* Grigio scuro per il testo (quasi nero) */
-    --text-light-color: #64748B;   /* Grigio più chiaro per testo secondario */
-    --border-color: #E2E8F0;       /* Grigio leggero per i bordi */
-    --success-color: #00A86B;      /* Verde per messaggi di successo */
-    --warning-color: #FFAB00;      /* Ambra per avvisi */
-    --danger-color: #FF5630;       /* Rosso per eliminazioni e errori */
+    --primary-color: #0068FF;
+    --secondary-color: #00B8D9;
+    --background-color: #F0F2F6;
+    --container-bg-color: #FFFFFF;
+    --text-color: #1E293B;
+    --text-light-color: #64748B;
+    --border-color: #E2E8F0;
+    --success-color: #00A86B;
+    --warning-color: #FFAB00;
+    --danger-color: #FF5630;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
 
 /* =================================== */
-/* Regole Generali per l'App           */
+/* Regole Generali per l'App (CON !IMPORTANT) */
 /* =================================== */
 body, [data-testid="stAppViewContainer"], .main {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    font-family: 'Poppins', sans-serif !important;
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
 }
 
 h1, h2, h3 {
     font-weight: 600 !important;
+    font-family: 'Poppins', sans-serif !important; /* Aggiunto per sicurezza */
 }
 
 /* Rimuove la barra colorata in alto per un look più pulito */
 [data-testid="stHeader"] {
-    background-color: var(--container-bg-color);
-    box-shadow: var(--shadow-sm);
-    border-bottom: 1px solid var(--border-color);
+    background-color: var(--container-bg-color) !important;
+    box-shadow: var(--shadow-sm) !important;
+    border-bottom: 1px solid var(--border-color) !important;
 }
 
 /* =================================== */
 /* Stile dei Widget Principali         */
 /* =================================== */
 
-/* Stile per form, expander, e altri contenitori */
 [data-testid="stForm"], [data-testid="stExpander"] {
-    background-color: var(--container-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    box-shadow: var(--shadow-md);
-    transition: box-shadow 0.3s ease;
-}
-[data-testid="stForm"]:hover, [data-testid="stExpander"]:hover {
-    box-shadow: var(--shadow-lg);
+    background-color: var(--container-bg-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    box-shadow: var(--shadow-md) !important;
 }
 
-/* Stile per le metriche */
 [data-testid="stMetric"] {
-    background-color: var(--container-bg-color);
-    border-radius: 12px;
-    padding: 20px;
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-}
-[data-testid="stMetric"] label {
-    font-weight: 500;
-    color: var(--text-light-color);
+    background-color: var(--container-bg-color) !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    border: 1px solid var(--border-color) !important;
 }
 
 /* =================================== */
 /* Pulsanti e Input                    */
 /* =================================== */
-
-/* Stile generale per gli input */
 .stTextInput>div>div>input, 
 .stDateInput>div>div>input, 
 .stSelectbox>div>div, 
@@ -80,72 +68,20 @@ h1, h2, h3 {
     border-radius: 8px !important;
     border: 1px solid var(--border-color) !important;
     background-color: #FFFFFF !important;
-    transition: all 0.2s ease;
-}
-.stTextInput>div>div>input:focus, 
-.stDateInput>div>div>input:focus, 
-.stSelectbox>div>div:focus-within, 
-.stNumberInput>div>div>input:focus {
-    border-color: var(--primary-color) !important;
-    box-shadow: 0 0 0 3px rgba(0, 104, 255, 0.2);
 }
 
-/* Pulsanti Primari */
 button[kind="primary"] {
-    border-radius: 8px;
-    font-weight: 600;
-    padding: 10px 20px;
-    background-color: var(--primary-color);
-    color: white;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    background-color: var(--primary-color) !important;
+    color: white !important;
     border: none !important;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s ease-in-out;
-}
-button[kind="primary"]:hover {
-    transform: translateY(-2px);
-    background-color: #0052CC; /* Scurisce leggermente all'hover */
-    box-shadow: var(--shadow-md);
 }
 
-/* Pulsanti Secondari (migliorati) */
 .stButton>button:not([kind="primary"]) {
-    border-radius: 8px;
-    font-weight: 600;
-    padding: 10px 20px;
-    background-color: var(--container-bg-color);
-    color: var(--text-color); 
-    border: 2px solid #CBD5E1; /* Bordo più marcato */
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-}
-.stButton>button:not([kind="primary"]):hover {
-    transform: translateY(-2px);
-    background-color: #F1F5F9; /* Grigio chiaro */
-    border-color: #94A3B8;    /* Grigio più scuro */
-    box-shadow: var(--shadow-md);
-}
-.stButton>button:not([kind="primary"]):active {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
-    background-color: #E2E8F0;
-    border-color: var(--primary-color);
-}
-
-/* Pulsante Danger (per eliminazioni) */
-.stButton>button.danger {
-    background-color: var(--danger-color);
-    color: #fff;
-    border: none;
-    box-shadow: var(--shadow-sm);
-}
-.stButton>button.danger:hover {
-    background-color: #E03E1A;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-.stButton>button.danger:active {
-    transform: translateY(0);
-    background-color: #CC2E10;
-    box-shadow: var(--shadow-sm);
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    background-color: var(--container-bg-color) !important;
+    color: var(--text-color) !important;
+    border: 2px solid #CBD5E1 !important;
 }
