@@ -53,7 +53,7 @@ def load_css(file_name):
         with open(file_name) as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
         # LOG DI SUCCESSO: Decommenta questa riga per vedere un messaggio quando il CSS viene caricato
-            st.toast("✅ CSS caricato correttamente!", icon="🎨")
+        # st.toast("✅ CSS caricato correttamente!", icon="🎨")
     except FileNotFoundError:
         st.error(f"ATTENZIONE: File CSS non trovato al percorso: '{file_name}'.")
 
