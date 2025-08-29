@@ -1,5 +1,4 @@
-/* Importa il font Poppins da Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Il font Poppins ora viene importato da app.py */
 
 /* =================================== */
 /* DEFINIZIONE COLORI E VARIABILI      */
@@ -148,4 +147,5 @@ button[kind="primary"]:hover {
 .stButton>button.danger:active {
     transform: translateY(0);
     background-color: #CC2E10;
-    box-shadow:
+    box-shadow: var(--shadow-sm);
+}
