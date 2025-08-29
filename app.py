@@ -8,7 +8,8 @@ from collections import defaultdict
 from dateutil.relativedelta import relativedelta
 import calendar
 import numpy as np
-from pathlib import Path # <-- 1. IMPORTATO PATHLIB
+import os # <-- 1. IMPORTATO OS
+from pathlib import Path
 
 # Importa le funzioni dal file db.py
 try:
@@ -40,8 +41,10 @@ except ImportError as e:
     st.stop()
 
 # --- DEFINIZIONE PERCORSO CSS ---
-# 2. Definisce il percorso del CSS in modo robusto
-CSS_FILE = Path(__file__).parent / "styles" / "main.css"
+# 2. Definisce il percorso del CSS in modo ancora più robusto per Streamlit Cloud
+# Usa un percorso assoluto partendo dalla directory dello script
+SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+CSS_FILE = os.path.join(SCRIPT_DIR, "styles", "main.css")
 
 
 # --- FUNZIONE PER CARICARE IL CSS ---
@@ -50,7 +53,9 @@ def load_css(file_name):
         with open(file_name) as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
     except FileNotFoundError:
-        st.warning(f"Il file CSS '{file_name}' non è stato trovato. Assicurati che si trovi in una cartella 'styles'.")
+        st.error(f"ATTENZIONE: Il file CSS non è stato trovato al percorso: '{file_name}'. La grafica potrebbe non essere corretta.")
+        st.warning("Controlla che la struttura del repository su GitHub sia: /styles/main.css")
+
 
 # --- INIZIALIZZAZIONI SESSION STATE ---
 def init_session_state():
