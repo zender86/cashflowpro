@@ -52,9 +52,10 @@ def load_css(file_name):
     try:
         with open(file_name) as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+        # LOG DI SUCCESSO: Decommenta questa riga per vedere un messaggio quando il CSS viene caricato
+            st.toast("✅ CSS caricato correttamente!", icon="🎨")
     except FileNotFoundError:
-        st.error(f"ATTENZIONE: Il file CSS non è stato trovato al percorso: '{file_name}'. La grafica potrebbe non essere corretta.")
-        st.warning("Controlla che la struttura del repository su GitHub sia: /styles/main.css")
+        st.error(f"ATTENZIONE: File CSS non trovato al percorso: '{file_name}'.")
 
 
 # --- INIZIALIZZAZIONI SESSION STATE ---
@@ -1212,19 +1213,35 @@ def login_screen():
 
 # --- ESECUZIONE PRINCIPALE ---
 if __name__ == "__main__":
+    # 1. Inizializzazioni di base (sempre eseguite)
     init_session_state()
-    
-    # Controlla se l'utente è autenticato e mostra la vista corretta
+    init_db()
+    auth.create_auth_schema()
+
+    # 2. Logica di visualizzazione basata sull'autenticazione
     if st.session_state.authenticated:
+        # --- VISTA UTENTE LOGGATO ---
         st.set_page_config(page_title="Cashflow Pro", layout="wide", initial_sidebar_state="collapsed")
-        load_css(CSS_FILE)   # <-- CSS dopo il login
-        init_db()
-        auth.create_auth_schema()
+        
+        # 3. Iniezione del Font (qui per l'utente loggato)
+        st.markdown("""
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        """, unsafe_allow_html=True)
+        
+        load_css(CSS_FILE)
         show_main_dashboard()
     else:
-        # La configurazione della pagina per il login è diversa
+        # --- VISTA LOGIN ---
         st.set_page_config(page_title="Cashflow Pro - Accesso", layout="centered")
-        init_db() # Il DB deve essere inizializzato anche per la pagina di login
-        auth.create_auth_schema()
-        load_css(CSS_FILE)   # <-- CSS anche per il login
+        
+        # 3. Iniezione del Font (qui per la pagina di login)
+        st.markdown("""
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        """, unsafe_allow_html=True)
+        
+        load_css(CSS_FILE)
         login_screen()
