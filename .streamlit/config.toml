@@ -1,0 +1,19 @@
+# [theme]
+# # Colore principale (il tuo lilla)
+# primaryColor = "#c7b3ff"
+# 
+# # Sfondo principale (un azzurro tenue)
+# backgroundColor = "#f0f8ff"
+# 
+# # Sfondo secondario per sidebar e blocchi
+# secondaryBackgroundColor = "#e6f0ff"
+# 
+# # Colore del testo (grigio scuro)
+# textColor = "#212529"
+# 
+# # Famiglia di font
+# font = "sans serif"
+
+[global]
+# Imposta la localizzazione globale su Italiano
+lang = "it_IT"
